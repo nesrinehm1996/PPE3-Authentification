@@ -1,23 +1,32 @@
 #!/usr/bin/env groovy
 pipeline {
-         agent {
-       docker {
-           image 'node'
-           args '-u root'
-       }
-   }
+         agent any {
+       
+   
    stages {
        stage('Build') {
            steps {
-               echo 'Building...'
-               sh 'npm install'
+                    withMaven(maven : 'maven-3.6.3'){
+            
+               sh 'mvn clean compile'
+                    }
            }
        }
        stage('Test') {
            steps {
-               echo 'Testing...'
-               sh 'npm test'
+                    withMaven(maven : 'maven-3.6.3'){
+                    
+               sh 'mvn test'
            }
        }
    }
+        stage('deploy') {
+           steps {
+                    withMaven(maven : 'maven-3.6.3'){
+                    
+               sh 'mvn deploy'
+           }
+       }
+   }     
 }
+         }
