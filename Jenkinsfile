@@ -1,28 +1,26 @@
-#!/usr/bin/env groovy
 pipeline {
-         agent any {
-       
-   
+         agent any 
+          
    stages {
-       stage('Build') {
+       stage ('Build') {
            steps {
-                    withMaven(maven : 'maven-3.6.3'){
+                    withMaven(maven : 'maven-3.6.3') {
             
                sh 'mvn clean compile'
                     }
            }
        }
-       stage('Test') {
+       stage ('Test') {
            steps {
-                    withMaven(maven : 'maven-3.6.3'){
+                    withMaven(maven : 'maven-3.6.3') {
                     
                sh 'mvn test'
            }
        }
    }
-        stage('deploy') {
+        stage ('deploy') {
            steps {
-                    withMaven(maven : 'maven-3.6.3'){
+                    withMaven(maven : 'maven-3.6.3') {
                     
                sh 'mvn deploy'
            }
@@ -30,4 +28,3 @@ pipeline {
    }     
 }
          }
-}
