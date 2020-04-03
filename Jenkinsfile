@@ -6,7 +6,7 @@ pipeline {
 
     tools {
         // Note: This should match with the tool name configured in your jenkins instance (JENKINS_URL/configureTools/)
-        maven "Maven 3.6.0"
+        maven "apache-maven-3.6.3"
     }
 
     environment {
@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                     // Let's clone the source
-                    git 'https://github.com/Raouagarati101.git';
+                    git 'https://github.com/Raouagarati101/PPE3-Authentification.git';
                 }
             }
         }
