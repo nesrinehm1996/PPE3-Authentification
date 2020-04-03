@@ -42,15 +42,15 @@ pipeline {
                     // Lire le fichier xml POM en utilisant l'étape 'readMavenPom', cette étape 'readMavenPom' est incluse dans: https://plugins.jenkins.io/pipeline-utility-steps
                     pom = fichier readMavenPom : " pom.xml " ;
                     // Trouver un artefact construit dans le dossier cible
-                    filesByGlob = findFiles ( glob : " target / *. $ { pom.packaging } " );
+                    filesByGlob = findFiles ( glob : " target/*. ${pom.packaging} " );
                     // Imprimer des informations sur l'artefact trouvé
-                    echo " $ { filesByGlob [0] .name }  $ { filesByGlob [0] .path }  $ { filesByGlob [0] .directory }  $ { filesByGlob [0] .length }  $ { filesByGlob [0] .lastModified } "
+                    echo " $ { filesByGlob [0] .name }  $ { filesByGlob[0].path }  $ { filesByGlob [0] .directory }  $ { filesByGlob [0] .length }  $ { filesByGlob [0] .lastModified } "
                     // Extraire le chemin du fichier trouvé
                     artifactPath = filesByGlob [ 0 ] . chemin;
                     // Assigner à une réponse booléenne vérifiant si le nom de l'artefact existe
                     artifactExists = fileExists artifactPath;
                     if (artifactExists) {
-                        echo " *** Fichier: $ { artifactPath } , groupe: $ { pom.groupId } , emballage: $ { pom.packaging } , version $ { pom.version } " ;
+                        echo " *** Fichier: ${ artifactPath } , groupe: ${ pom.groupId } , emballage: ${ pom.packaging } , version ${ pom.version } " ;
                         nexusArtifactUploader (
                             nexusVersion : NEXUS_VERSION ,
                             protocole : NEXUS_PROTOCOL ,
