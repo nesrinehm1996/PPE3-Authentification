@@ -15,9 +15,9 @@ pipeline {
         // This can be http or https
         NEXUS_PROTOCOL = "http"
         // Where your Nexus is running. 'nexus-3' is defined in the docker-compose file
-        NEXUS_URL = "localhost:8081"
+        NEXUS_URL = "127.0.0.1:8081"
         // Repository where we will upload the artifact
-        NEXUS_REPOSITORY = "nexus"
+        NEXUS_REPOSITORY = "repository-example"
         // Jenkins credential id to authenticate to Nexus OSS
         NEXUS_CREDENTIAL_ID = "nexus-credentials"
     }
@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                     // Let's clone the source
-                    git 'https://github.com/Raouagarati101/PPE3-Authentification.git';
+                    git 'https://github.com/nesrinehm1996/PPE3-Authentification.git';
                 }
             }
         }
